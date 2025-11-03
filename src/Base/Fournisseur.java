@@ -43,16 +43,15 @@ public class Fournisseur {
     }
     // constructeur avec paramètres
     public Fournisseur (int id, String raisonSociale, String adresse, String matriculeFiscale, int chiffreAffaire, String groupe) {
+        if (id <=0 || chiffreAffaire <1000) {
+            throw new InvalidFoException("message explicite");
+        }
         this.id = id;
         this.raisonSociale = raisonSociale;
         this.adresse = adresse;
         this.matriculeFiscale = matriculeFiscale;
         this.chiffreAffaire = chiffreAffaire;
         this.groupe = groupe;
-
-        if (id <=0 || chiffreAffaire <1000) {
-            throw new InvalidFoException("message explicite");
-        }
     }
 
     // constructeur par recopie
@@ -105,11 +104,11 @@ public class Fournisseur {
         return chiffreAffaire;
     }
 
-    public Fournisseur fusion(Fournisseur A, Fournisseur B) {
+    public static Fournisseur fusion(Fournisseur A, Fournisseur B) {
         if (!A.groupe.equals(B.groupe)) {
             throw new IllegalArgumentException("Le groupe doit être le même");
         }
-        if (!A.matriculeFiscale.equals(matriculeFiscale)) {
+        if (!A.matriculeFiscale.equals(B.matriculeFiscale)) {
             throw new IllegalArgumentException("La matricule fiscale doit être la même");
         }
         Fournisseur fusionFournisseur = new Fournisseur();

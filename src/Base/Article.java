@@ -13,12 +13,20 @@ public class Article {
     private double prix;
     private int quantiteStock;
     private String nomArticle;
+    private Fournisseur fournisseur;
 
-    public Article (int code, double prix, int quantiteStock, String nomArticle) {
+    public Article (int code, double prix, int quantiteStock, String nomArticle, Fournisseur fournisseur) {
         this.code = code;
         this.prix = prix;
         this.quantiteStock = quantiteStock;
         this.nomArticle = nomArticle;
+        this.fournisseur = fournisseur;
+    }    public Article (int code, double prix, int quantiteStock, String nomArticle) {
+        this.code = code;
+        this.prix = prix;
+        this.quantiteStock = quantiteStock;
+        this.nomArticle = nomArticle;
+        this.fournisseur = null;
     }
 
     public Article (Article autre) {
@@ -26,6 +34,7 @@ public class Article {
         this.prix = autre.prix;
         this.quantiteStock = autre.quantiteStock;
         this.nomArticle = autre.nomArticle;
+        this.fournisseur = autre.fournisseur;
     }
     public int getCode() {
         return code;
@@ -37,6 +46,7 @@ public class Article {
         return quantiteStock;
     }
     public String getNomArticle() { return nomArticle; }
+    public Fournisseur getFournisseur() {return fournisseur;}
     public void setCode(int code) {
         this.code = code;
     }
@@ -47,6 +57,7 @@ public class Article {
         this.quantiteStock = quantiteStock;
     }
     public void setNomArticle(String nomArticle) {this.nomArticle = nomArticle; }
+    public void setFournisseur(Fournisseur fournisseur) {this.fournisseur = fournisseur;}
 
     public int compare(Article a) {
         if (this.code < a.code) return -1;
