@@ -1,4 +1,4 @@
-package Base.*;
+package Base;
 
 import java.util.ArrayList;
 
@@ -32,7 +32,7 @@ public class Stock {
         for (Article art : articles) {
             if (art.getCode() == nouvelArticle.getCode()) {
                 System.out.println("Code " + nouvelArticle.getCode() + " existe déjà !");
-                return  false;
+                return false;
             }
         }
         articles.add(nouvelArticle);
@@ -109,8 +109,9 @@ public class Stock {
                 System.out.println("Code : " + art.getCode() +
                         " | Prix : " + art.getPrix() +
                         " | Stock : " + art.getQuantiteStock() +
-                        " | Nom : " + art.getNomArticle()
-                        " | Fournisseur : " + fournisseur););
+                        " | Nom : " + art.getNomArticle());
+                        //+
+                        //" | Fournisseur : " + art.getFournisseur());
             }
         }
         System.out.println("---------------------\n");
