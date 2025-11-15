@@ -4,17 +4,48 @@ import Base.*;
 
 public class Main {
     public static void main(String[] args) {
-        // instancier des articles
-        Stock stock = new Stock();
+        // creer un magasin
+        Magasin techMagasin = new Magasin("TechClé", "Jean DuClé", "Magasin de matériel technologique en plein centre de Bogotá");
+        // creer un fournisseur
+        Fournisseur fournisseurLocal = new Fournisseur(1, "SideCorp", "44 rue de la Tech", "FR-001", 80000, "Tech");
+        FournisseurEtranger fournisseurChine = new FournisseurEtranger(2, "ChinaTech", "Beijing", "CH-002", 150000, "Tech", "Chine", "Yuan", 0.13);
+        Article a1 = new Article(1, 5000, 5, "iMac", fournisseurLocal);
+        Article a2 = new Article(2, 250, 10, "Clavier LogiTech", fournisseurLocal);
+        Article a3 = new Article(3, 500, 50, "Casque Bose", fournisseurChine);
+        Article a4 = new Article(4, 150, 200, "Souris Logitech", fournisseurLocal);
 
-        Fournisseur f = new Fournisseur(1, "TechCorp", "Paris", "FR-001", 50000, "Tech");
+        techMagasin.getStock().insertion(a1);
+        techMagasin.getStock().insertion(a2);
+        techMagasin.getStock().insertion(a3);
+        techMagasin.getStock().insertion(a4);
 
-        Article a1 = new Article(105, 29.99, 50, "Clavier", f);
-        Article a2 = new Article(102, 15.50, 100, "Souris");
+        // afficher le stock
 
-        stock.insertion(a1);
-        stock.insertion(a2);
-        stock.affiche();
+        techMagasin.getStock().affiche();
+
+        // vendre des articles
+        techMagasin.getStock().vendre(1, 2);
+        techMagasin.getStock().vendre(2, 68);
+        techMagasin.getStock().vendre(3, 17);
+        techMagasin.getStock().vendre(4, 89);
+
+        techMagasin.getStock().affiche();
+
+        // approvisionnement
+
+        techMagasin.getStock().achat(1, 15);
+        techMagasin.getStock().achat(2, 15);
+        techMagasin.getStock().achat(3, 15);
+        techMagasin.getStock().achat(4, 15);
+
+        techMagasin.getStock().affiche();
+
+        // supprimer
+
+        techMagasin.getStock().supprime(2);
+
+        techMagasin.getStock().affiche();
+
     }
 
 }
