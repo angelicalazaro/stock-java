@@ -109,9 +109,8 @@ public class Stock {
                 System.out.println("Code : " + art.getCode() +
                         " | Prix : " + art.getPrix() +
                         " | Stock : " + art.getQuantiteStock() +
-                        " | Nom : " + art.getNomArticle());
-                        //+
-                        //" | Fournisseur : " + art.getFournisseur());
+                        " | Nom : " + art.getNomArticle() +
+                        " | Fournisseur : " + art.getFournisseur());
             }
         }
         System.out.println("---------------------\n");
