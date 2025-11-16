@@ -106,11 +106,14 @@ public class Stock {
             System.out.println("Stock vide");
         } else {
             for (Article art : articles) {
+                String fournisseurNom = (art.getFournisseur() != null)
+                        ? art.getFournisseur().getRaisonSociale()
+                        : "Aucun";
                 System.out.println("Code : " + art.getCode() +
                         " | Prix : " + art.getPrix() +
                         " | Stock : " + art.getQuantiteStock() +
                         " | Nom : " + art.getNomArticle() +
-                        " | Fournisseur : " + art.getFournisseur());
+                        " | Fournisseur : " + fournisseurNom);
             }
         }
         System.out.println("---------------------\n");

@@ -1,15 +1,18 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 import Base.*;
-
+import BD.dbUtil;
+import Persistance.GestionFichiers;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class Main {
     private static Scanner scanner= new Scanner(System.in);
     private static Magasin magasin;
+    private static dbUtil db = new dbUtil();
 
     public static void main(String[] args) {
+
         // initialisation du magasin
         System.out.println("--------------BIENVENUE À VOTRE LOGICIEL DE GESTION POUR VOTRE MAGASIN---------");
         System.out.println("Nom du magasin : ");
@@ -22,7 +25,11 @@ public class Main {
         magasin = new Magasin(nom, propietaire, description);
         System.out.println("\nMagasin crée avec succès :) ");
 
+        GestionFichiers.chargerArticles(magasin.getStock());
+
         menuPrincipal();
+
+        GestionFichiers.sauvegarderFichiers(magasin.getStock());
     }
 
     public static void menuPrincipal() {
@@ -35,7 +42,8 @@ public class Main {
                     "                           |_|                       |_|                ");
             System.out.println("1. Gestion Article");
             System.out.println("2. Gestion Magasin (Vente ou Achat)");
-            System.out.println(("3. Quitter le menu"));
+            System.out.println("3. Base de données");
+            System.out.println(("4. Quitter le menu"));
             System.out.println("Votre choix : ");
 
             int choix = scanner.nextInt();
@@ -49,6 +57,9 @@ public class Main {
                     menuGestionMagasin();
                     break;
                 case 3:
+                    menuBaseDeDonnes();
+                    break;
+                case 4:
                     System.out.println("Au revoir et à bientôt.");
                     return;
                 default:
@@ -106,6 +117,36 @@ public class Main {
                     break;
                 case 3:
                     afficherStock();
+                    break;
+                case 4:
+                    return;
+                default:
+                    System.out.println("Choix invalide");
+            }
+        }
+    }
+    //Menu BDD
+    public static void menuBaseDeDonnes() {
+        while (true) {
+            System.out.println("\n--- BASE DE DONNÉES ---");
+            System.out.println("1. Sauvegarder le stock dans la BD");
+            System.out.println("2. Charger le stock depuis la BD");
+            System.out.println("3. Afficher le contenu de la BD");
+            System.out.println("4. Retour au menu principal");
+            System.out.println("Votre choix : ");
+
+            int choix = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choix) {
+                case 1:
+                    db.sauvegarderStock(magasin.getStock());
+                    break;
+                case 2:
+                    db.chargerStock(magasin.getStock());
+                    break;
+                case 3:
+                    db.afficherArticles();
                     break;
                 case 4:
                     return;

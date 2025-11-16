@@ -68,11 +68,15 @@ public class Article {
     // rédefinir la méthode toString() ->
     @Override
     public String toString() {
-        return "Article " + ": " +
+        String result = "Article " + ": " +
                 "\ncode : " + code +
                 "\nprix : " + prix +
                 "\nquantité en stock : " + quantiteStock +
                 "\nnom de l'article : " + nomArticle;
+        if (fournisseur != null) {
+            result += "\nFournisseur : " + fournisseur.getRaisonSociale();
+        }
+        return result;
     }
 
 }
